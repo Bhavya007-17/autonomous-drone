@@ -56,6 +56,10 @@ In development — scaffolding and design phase.
 - TODO: add GPS waypoint navigation
 - TODO: flight test + demo video
 
+## License
+
+MIT — see the [LICENSE](LICENSE) file.
+
 ## Contact
 
 Bhavya Dosi — [LinkedIn](https://www.linkedin.com/in/bhavya-dosi)
