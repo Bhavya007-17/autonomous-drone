@@ -9,6 +9,7 @@ A palm-sized mini quadcopter that tracks humans and records 4K video — built a
 ![Parts](https://img.shields.io/badge/parts-33-blue)
 ![Cost](https://img.shields.io/badge/est.%20cost-%24412.83-green)
 ![Status](https://img.shields.io/badge/status-design%20%2B%20bring--up-orange)
+![FEA](https://img.shields.io/badge/FEA-min%20SF%2010.2-brightgreen)
 
 ## Overview
 
@@ -52,6 +53,23 @@ The mechanical stack includes 3D-printed mounts for every subsystem — flight c
 ![Wiring diagram](docs/images/wiring-diagram.png)
 
 Central hub is the **SpeedyBee F7 Mini**. Power flows from a 2S LiPo through the 4-in-1 ESC to the motors; the FC distributes 5 V to peripherals over UART, I2C, and PWM. Full pin assignments are in [docs/wiring.md](docs/wiring.md).
+
+## Structural FEA Analysis
+
+Static-stress finite-element analysis of the **CINEC 25.1.2 cinewhoop airframe** (3D-printed ABS) in **Autodesk Fusion (Simulation)**, validating that the printed frame survives full-thrust loading. Full write-up, methodology, and high-resolution plots are in **[`structural-analysis/`](structural-analysis/)**.
+
+![Safety Factor result](structural-analysis/fea-safety-factor.png)
+
+| Result — 400 g total thrust (4 × 0.98 N) | Value |
+|---|---|
+| Minimum Safety Factor (ABS yield) | **10.2** — "Very strong" |
+| Maximum von Mises stress | **1.96 MPa** |
+| Maximum displacement | **1.18 mm** |
+| Weakest zones | prop-guard spokes, duct-to-frame junctions |
+
+**Method:** structural-parts-only model (non-load-bearing electronics removed), ABS material, *Fixed* constraint on the central top deck, four upward 0.98 N thrust loads at the motor bells, bonded automatic contacts, ~1.9 M-element tetrahedral mesh, solved locally. A frame-only baseline (Simulation Model 1) returned SF ≈ 0.57 — showing that the **ducts and prop guards act as primary load-sharing members**, not just protection.
+
+→ **[Read the full structural analysis](structural-analysis/README.md)**
 
 ## Architecture
 
@@ -100,6 +118,13 @@ autonomous-drone/
 │   ├── parts-list.md               # full BOM (33 parts)
 │   ├── wiring.md                   # pin map and connections
 │   └── assembly.md                 # step-by-step build instructions
+├── structural-analysis/            # FEA of the CINEC 25.1.2 frame
+│   ├── README.md                   # full analysis write-up
+│   ├── fea-safety-factor.png       # Safety Factor plot
+│   ├── fea-von-mises-stress.png    # von Mises stress plot
+│   ├── fea-displacement.png        # displacement plot
+│   ├── drone-cad-model.png         # full CAD assembly render
+│   └── cinec-25-drone-model.stl    # 3D mesh of the drone
 ├── src/                            # flight firmware / tracking logic (planned)
 └── README.md
 ```
@@ -109,6 +134,7 @@ autonomous-drone/
 - [x] Frame and component selection
 - [x] 3D CAD layout and wiring design
 - [x] Parts list and assembly documentation
+- [x] Structural FEA validation of the frame (min SF ≈ 10.2)
 - [ ] 3D print and mechanical assembly
 - [ ] Electrical bring-up and Betaflight tuning
 - [ ] GPS waypoint navigation
@@ -118,7 +144,7 @@ autonomous-drone/
 
 ## Status
 
-**Design + documentation complete** — mechanical CAD, wiring schematic, BOM, and bring-up procedures are documented. Hardware build and firmware development are next.
+**Design + documentation complete** — mechanical CAD, wiring schematic, BOM, structural FEA, and bring-up procedures are documented. Hardware build and firmware development are next.
 
 ## License
 
