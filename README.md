@@ -58,7 +58,7 @@ Central hub is the **SpeedyBee F7 Mini**. Power flows from a 2S LiPo through the
 
 Static-stress finite-element analysis of the **CINEC 25.1.2 cinewhoop airframe** (3D-printed ABS) in **Autodesk Fusion (Simulation)**, validating that the printed frame survives full-thrust loading. Full write-up, methodology, and high-resolution plots are in **[`structural-analysis/`](structural-analysis/)**.
 
-![Safety Factor result](structural-analysis/fea-safety-factor.png)
+![Safety Factor result](structural-analysis/images/fea-safety-factor.png)
 
 | Result — 400 g total thrust (4 × 0.98 N) | Value |
 |---|---|
@@ -120,12 +120,14 @@ autonomous-drone/
 │   └── assembly.md                 # step-by-step build instructions
 ├── structural-analysis/            # FEA of the CINEC 25.1.2 frame
 │   ├── README.md                   # full analysis write-up
-│   ├── fea-safety-factor.png       # Safety Factor plot
-│   ├── fea-von-mises-stress.png    # von Mises stress plot
-│   ├── fea-displacement.png        # displacement plot
-│   ├── drone-cad-model.png         # full CAD assembly render
+│   ├── images/
+│   │   ├── cad-assembly-iso.png    # CAD assembly, isometric view
+│   │   ├── cad-assembly-top.png    # CAD assembly, top view
+│   │   ├── cad-assembly-bottom.png # CAD assembly, bottom view
+│   │   ├── fea-safety-factor.png   # Safety Factor plot
+│   │   └── fea-von-mises-stress.png# von Mises stress plot
 │   └── cinec-25-drone-model.stl    # 3D mesh of the drone
-├── src/                            # flight firmware / tracking logic (planned)
+├── src/                             # flight firmware / tracking logic (planned)
 └── README.md
 ```
 

@@ -2,7 +2,9 @@
 
 Static-stress finite-element analysis of a 3D-printed **ABS ducted "cinewhoop" FPV drone frame**, performed in **Autodesk Fusion (Simulation)**. The study validates that the load-bearing structure survives full-thrust loading with margin, and identifies the highest-stress regions of the airframe.
 
-![CINEC 25.1.2 full CAD assembly](drone-cad-model.png)
+| Isometric | Top | Bottom |
+|---|---|---|
+| ![Isometric view](images/cad-assembly-iso.png) | ![Top view](images/cad-assembly-top.png) | ![Bottom view](images/cad-assembly-bottom.png) |
 
 ---
 
@@ -15,7 +17,7 @@ Static-stress finite-element analysis of a 3D-printed **ABS ducted "cinewhoop" F
 | **Tool** | Autodesk Fusion — Simulation workspace |
 | **Material** | ABS plastic (FDM), all structural parts |
 | **Load case** | 400 g total thrust (4 × 100 g), motors at full pull |
-| **Result** | Min. Safety Factor **10.2** · Max von Mises **1.96 MPa** · Max deflection **1.18 mm** |
+| **Result** | Min. Safety Factor **10.2** · Max von Mises **1.955 MPa** · Max deflection **1.18 mm** |
 
 The full CAD assembly (above) includes the frame, ducts and prop guards, standoffs, top deck, four XING2 1404 motors, an AIO flight controller, an ELRS receiver, camera, battery and capacitor. For the structural analysis, only the **load-bearing parts** were retained (see methodology).
 
@@ -65,19 +67,17 @@ Solved locally (static solve — no cloud credits).
 | Solver | Local static, ABS, bonded contacts |
 
 ### Safety Factor
-Entire structure is above the 4.0 target (whole model blue). Minimum SF ≈ 10.2 means the airframe carries ~10× its full-thrust load before reaching the ABS yield point.
+Entire structure sits above the 4.0 "In Range" target (whole model reads blue / "Above Target" on the 0–8+ scale). Minimum SF ≈ 10.2 means the airframe carries roughly 10× its full-thrust load before reaching the ABS yield point.
 
-![Safety Factor result](fea-safety-factor.png)
+![Safety Factor result](images/fea-safety-factor.png)
 
 ### Von Mises Stress
-Peak stress **1.96 MPa**, far below the ~20 MPa ABS yield. Elevated stress (cyan/green) concentrates on the **prop-guard spoke arms** and the **duct-to-frame / standoff junctions** — the members that transfer motor thrust into the central frame.
+Peak stress **1.955 MPa**, far below the ~20 MPa ABS yield point. Elevated stress (cyan/green against the blue field) concentrates on the **prop-guard spoke arms** and the **duct-to-frame / standoff junctions** — the members that transfer motor thrust into the central frame.
 
-![Von Mises stress result](fea-von-mises-stress.png)
+![Von Mises stress result](images/fea-von-mises-stress.png)
 
 ### Displacement
-Peak deflection **1.18 mm**, at the **outer duct / prop-guard rings** (furthest from the fixed central deck). The core frame is essentially rigid; flex lives in the cantilevered duct rings.
-
-![Displacement result](fea-displacement.png)
+Peak deflection **1.183 mm**, at the **outer duct / prop-guard rings** (furthest from the fixed central deck). The core frame is essentially rigid; flex lives in the cantilevered duct rings. *(Displacement contour plot to be re-captured and added — numeric result from the solver report is final.)*
 
 ---
 
@@ -116,10 +116,11 @@ This is the key structural insight: the **ducts and prop guards are not just cos
 
 | File | Description |
 |---|---|
-| `drone-cad-model.png` | Full CINEC 25.1.2 CAD assembly (render) |
-| `fea-safety-factor.png` | FEA — Safety Factor plot |
-| `fea-von-mises-stress.png` | FEA — von Mises stress plot |
-| `fea-displacement.png` | FEA — total displacement plot |
+| `images/cad-assembly-iso.png` | Full CINEC 25.1.2 CAD assembly — isometric view |
+| `images/cad-assembly-top.png` | Full CAD assembly — top view |
+| `images/cad-assembly-bottom.png` | Full CAD assembly — bottom view |
+| `images/fea-safety-factor.png` | FEA — Safety Factor contour plot |
+| `images/fea-von-mises-stress.png` | FEA — von Mises stress contour plot |
 | `cinec-25-drone-model.stl` | 3D mesh of the full drone (mm) |
 | `README.md` | This report |
 
